@@ -11,27 +11,35 @@ use Laravel\Jetstream\Contracts\DeletesUsers;
 class DeleteUser implements DeletesUsers
 {
     /**
-     * Create a new action instance.
+     * The team deleter implementation.
+     *
+     * @var DeletesTeams
      */
-    public function __construct(
-        /**
-         * The team deleter implementation.
-         */
-        protected DeletesTeams $deletesTeams
-    ) {}
+    protected $deletesTeams;
+
+    /**
+     * Create a new action instance.
+     *
+     * @return void
+     */
+    public function __construct(DeletesTeams $deletesTeams)
+    {
+        $this->deletesTeams = $deletesTeams;
+    }
 
     /**
      * Delete the given user.
      *
      * @param  mixed  $user
+     * @return void
      */
-    public function delete($user): void
+    public function delete($user)
     {
         if (! $user instanceof User) {
             throw new InvalidArgumentException('Only Laravel user models can be deleted.');
         }
 
-        DB::transaction(function () use ($user): void {
+        DB::transaction(function () use ($user) {
             $this->deleteTeams($user);
             $user->deleteProfilePhoto();
             $user->connectedAccounts->each->delete();
@@ -49,7 +57,7 @@ class DeleteUser implements DeletesUsers
     {
         $user->teams()->detach();
 
-        $user->ownedTeams->each(function ($team): void {
+        $user->ownedTeams->each(function ($team) {
             $this->deletesTeams->delete($team);
         });
     }
