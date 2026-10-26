@@ -5,8 +5,8 @@
   "license": "MIT",
   "require": {
     "php": "^8.5",
-    "laravel/fortify": "^1.0",
-    "laravel/jetstream": "^5.1",
+    "laravel/fortify": "^1.41.0",
+    "laravel/jetstream": "^5.5.3",
     "liberusoftware/identity-core": "^1.0",
     "liberusoftware/module-manager": "^1.0",
     "liberusoftware/organizations-teams": "^1.0"
@@ -21,7 +21,7 @@
       "name": "jetstream-bridge"
     }
   },
-  "version": "1.4.1",
+  "version": "1.4.2",
   "autoload-dev": {
     "psr-4": {
       "Liberu\\Foundation\\JetstreamBridge\\Tests\\": "tests/"
@@ -29,7 +29,7 @@
   },
   "require-dev": {
     "liberusoftware/package-testbench": "^1.5",
-    "pestphp/pest": "^5.0"
+    "pestphp/pest": "^5.3.3"
   },
   "scripts": {
     "test": "pest"
