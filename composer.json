@@ -21,7 +21,7 @@
       "name": "jetstream-bridge"
     }
   },
-  "version": "1.4.11",
+  "version": "1.4.12",
   "autoload-dev": {
     "psr-4": {
       "Liberu\\Foundation\\JetstreamBridge\\Tests\\": "tests/"
